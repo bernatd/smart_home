@@ -9,5 +9,4 @@ class SmartHomeApplicationTests {
 	@Test
 	void contextLoads() {
 	}
-
 }
