@@ -14,7 +14,7 @@ import java.util.Date;
 @Table(name = "data")
 public class Data {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
     private Date timestamp;
     @ManyToOne

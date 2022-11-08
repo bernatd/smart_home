@@ -16,7 +16,7 @@ import java.util.List;
 @Table(name = "sensors")
 public class Sensor {
     @Id
-    @GeneratedValue
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
 
     @NotNull
