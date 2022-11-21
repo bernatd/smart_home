@@ -1,5 +1,6 @@
 package pl.bernatd.smart_home.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
@@ -26,6 +27,7 @@ public class Sensor {
     private String units;
     private String desc;
 
+    @JsonIgnore
     @OneToMany(
             targetEntity = Data.class,
             mappedBy = "sensor",
