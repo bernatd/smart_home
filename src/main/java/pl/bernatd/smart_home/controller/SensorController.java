@@ -4,10 +4,11 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import pl.bernatd.smart_home.domain.Sensor;
+import pl.bernatd.smart_home.dto.SensorDto;
+import pl.bernatd.smart_home.mapper.SensorMapper;
 import pl.bernatd.smart_home.service.DbSensorService;
 
 import java.util.List;
-import java.util.Optional;
 
 @CrossOrigin("*")
 @RestController
@@ -15,33 +16,37 @@ import java.util.Optional;
 @RequiredArgsConstructor
 public class SensorController {
 
+    private final SensorMapper mapper;
+
     private final DbSensorService service;
 
     @GetMapping
-    public List<Sensor> getSensors() {
+    public List<SensorDto> getSensors() {
         List<Sensor> sensors = service.getAllSensors();
-        return sensors;
+        return mapper.mapToSensorDtoList(sensors);
     }
 
     @GetMapping(value = "{sensorId}")
-    public Optional<Sensor> getSensor(@PathVariable Long sensorId) {
-        return service.getSensor(sensorId);
+    public SensorDto getSensor(@PathVariable Long sensorId) {
+        return mapper.mapToSensorDto(service.getSensor(sensorId));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createSensor(@RequestBody Sensor sensor) {
+    public void createSensor(@RequestBody SensorDto sensorDto) {
+        Sensor sensor = mapper.mapToSensor(sensorDto);
         service.saveSensor(sensor);
     }
 
     @PutMapping
-    public Sensor updateSensor(@RequestBody Sensor sensor) {
+    public SensorDto updateSensor(@RequestBody SensorDto sensorDto) {
+        Sensor sensor = mapper.mapToSensor(sensorDto);
         Sensor savedSensor = service.saveSensor(sensor);
-        return savedSensor;
+        return mapper.mapToSensorDto(savedSensor);
     }
 
-    @DeleteMapping(value = "sensorId")
+    @DeleteMapping(value = "{sensorId}")
     public void deleteSensor(@PathVariable Long sensorId) {
-        service.deleteSensor(sensorId);
+         service.deleteSensor(sensorId);
     }
 }
 

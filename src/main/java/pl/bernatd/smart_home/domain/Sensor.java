@@ -43,4 +43,13 @@ public class Sensor {
         this.units = units;
         this.desc = desc;
     }
+
+    public Sensor(Long id, String name, String type, Integer pin, String units, String desc) {
+        this.id = id;
+        this.name = name;
+        this.type = type;
+        this.pin = pin;
+        this.units = units;
+        this.desc = desc;
+    }
 }

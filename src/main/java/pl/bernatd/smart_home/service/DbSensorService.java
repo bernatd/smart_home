@@ -7,7 +7,6 @@ import pl.bernatd.smart_home.domain.Sensor;
 import pl.bernatd.smart_home.repository.SensorRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor
@@ -24,8 +23,9 @@ public class DbSensorService {
         return repository.save(sensor);
     }
 
-    public Optional<Sensor> getSensor(Long id) {
-        return repository.findById(id);
+    public Sensor getSensor(Long id) {
+       return repository.findById(id).orElse(new Sensor());
+
     }
 
     public void deleteSensor(Long id) {
