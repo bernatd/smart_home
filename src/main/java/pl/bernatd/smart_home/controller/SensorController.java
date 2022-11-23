@@ -2,6 +2,7 @@ package pl.bernatd.smart_home.controller;
 
 import lombok.RequiredArgsConstructor;
 import org.springframework.http.MediaType;
+import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.bernatd.smart_home.domain.Sensor;
 import pl.bernatd.smart_home.dto.SensorDto;
@@ -22,32 +23,34 @@ public class SensorController {
     private final DbSensorService service;
 
     @GetMapping
-    public List<SensorDto> getSensors() {
+    public ResponseEntity<List<SensorDto>> getSensors() {
         List<Sensor> sensors = service.getAllSensors();
-        return mapper.mapToSensorDtoList(sensors);
+        return ResponseEntity.ok(mapper.mapToSensorDtoList(sensors));
     }
 
     @GetMapping(value = "{sensorId}")
-    public SensorDto getSensor(@PathVariable Long sensorId) throws SensorNotFoundException {
-        return mapper.mapToSensorDto(service.getSensor(sensorId));
+    public ResponseEntity<SensorDto> getSensor(@PathVariable Long sensorId) throws SensorNotFoundException {
+        return ResponseEntity.ok(mapper.mapToSensorDto(service.getSensor(sensorId)));
     }
 
     @PostMapping(consumes = MediaType.APPLICATION_JSON_VALUE)
-    public void createSensor(@RequestBody SensorDto sensorDto) {
+    public ResponseEntity<Void> createSensor(@RequestBody SensorDto sensorDto) {
         Sensor sensor = mapper.mapToSensor(sensorDto);
         service.saveSensor(sensor);
+        return ResponseEntity.ok().build();
     }
 
     @PutMapping
-    public SensorDto updateSensor(@RequestBody SensorDto sensorDto) {
+    public ResponseEntity<SensorDto> updateSensor(@RequestBody SensorDto sensorDto) {
         Sensor sensor = mapper.mapToSensor(sensorDto);
         Sensor savedSensor = service.saveSensor(sensor);
-        return mapper.mapToSensorDto(savedSensor);
+        return ResponseEntity.ok(mapper.mapToSensorDto(savedSensor));
     }
 
     @DeleteMapping(value = "{sensorId}")
-    public void deleteSensor(@PathVariable Long sensorId) {
-         service.deleteSensor(sensorId);
+    public ResponseEntity<Void> deleteSensor(@PathVariable Long sensorId) {
+        service.deleteSensor(sensorId);
+        return ResponseEntity.ok().build();
     }
 }
 

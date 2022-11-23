@@ -4,6 +4,7 @@ import lombok.RequiredArgsConstructor;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 import pl.bernatd.smart_home.domain.Sensor;
+import pl.bernatd.smart_home.exceptions.SensorNotFoundException;
 import pl.bernatd.smart_home.repository.SensorRepository;
 
 import java.util.List;
@@ -23,8 +24,8 @@ public class DbSensorService {
         return repository.save(sensor);
     }
 
-    public Sensor getSensor(Long id) {
-       return repository.findById(id).orElse(new Sensor());
+    public Sensor getSensor(Long id) throws SensorNotFoundException {
+       return repository.findById(id).orElseThrow(SensorNotFoundException::new);
 
     }
 
