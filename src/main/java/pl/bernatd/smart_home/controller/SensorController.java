@@ -5,6 +5,7 @@ import org.springframework.http.MediaType;
 import org.springframework.web.bind.annotation.*;
 import pl.bernatd.smart_home.domain.Sensor;
 import pl.bernatd.smart_home.dto.SensorDto;
+import pl.bernatd.smart_home.exceptions.SensorNotFoundException;
 import pl.bernatd.smart_home.mapper.SensorMapper;
 import pl.bernatd.smart_home.service.DbSensorService;
 
@@ -27,7 +28,7 @@ public class SensorController {
     }
 
     @GetMapping(value = "{sensorId}")
-    public SensorDto getSensor(@PathVariable Long sensorId) {
+    public SensorDto getSensor(@PathVariable Long sensorId) throws SensorNotFoundException {
         return mapper.mapToSensorDto(service.getSensor(sensorId));
     }
 

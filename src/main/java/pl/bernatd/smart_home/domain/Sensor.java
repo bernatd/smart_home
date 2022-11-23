@@ -27,7 +27,6 @@ public class Sensor {
     private String units;
     private String desc;
 
-    @JsonIgnore
     @OneToMany(
             targetEntity = Data.class,
             mappedBy = "sensor",
