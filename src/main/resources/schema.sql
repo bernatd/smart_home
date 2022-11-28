@@ -15,7 +15,7 @@ CREATE TABLE data (
     id LONG AUTO_INCREMENT PRIMARY KEY,
     timestamp DATETIME DEFAULT CURRENT_TIMESTAMP,
     sensor_id LONG,
-    val REAL,
+    "value" REAL,
     PRIMARY KEY(id),
     FOREIGN KEY(sensor_id) REFERENCES sensors(id)
 );

@@ -20,11 +20,12 @@ public class Data {
     @ManyToOne
     @JoinColumn(name = "sensor_id")
     private Sensor sensor;
-    private Double val;
+    @Column(name = "\"value\"")
+    private Double value;
 
-    public Data(Sensor sensor, Double val) {
+    public Data(Sensor sensor, Double value) {
         this.sensor = sensor;
-        this.val = val;
+        this.value = value;
         this.timestamp = new Date();
     }
 }

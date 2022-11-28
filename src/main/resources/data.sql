@@ -3,7 +3,7 @@ INSERT INTO SENSORS(name, type, pin, units, desc) values
 ('PRESS_1','BME280',null,'hPa','Pomiar ciśnienia na zewnątrz'),
 ('HUMI_1','BME280',null,'%','Pomiar wilgotności na zewnątrz');
 
-INSERT INTO data(timestamp, sensor_id, val) values
+INSERT INTO data(timestamp, sensor_id, "value") values
 ('2018-05-18 15:47:50',1,22.4),
 ('2018-05-18 15:47:50',2,1013.2),
 ('2018-05-18 15:47:50',3,43.6),

@@ -26,7 +26,6 @@ public class DbSensorService {
 
     public Sensor getSensor(Long id) throws SensorNotFoundException {
        return repository.findById(id).orElseThrow(SensorNotFoundException::new);
-
     }
 
     public void deleteSensor(Long id) {

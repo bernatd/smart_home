@@ -13,4 +13,9 @@ public class GlobalHttpErrorHandler extends ResponseEntityExceptionHandler {
     public ResponseEntity<Object> handleSensorNotFoundException(SensorNotFoundException exception) {
         return new ResponseEntity<>("Sensor with given id does not exist", HttpStatus.BAD_REQUEST);
     }
+
+    @ExceptionHandler(DataNotFoundException.class)
+    public ResponseEntity<Object> handleDataNotFoundException(DataNotFoundException exception) {
+        return new ResponseEntity<>("Data with given id does not exist", HttpStatus.BAD_REQUEST);
+    }
 }
