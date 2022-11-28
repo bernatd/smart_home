@@ -8,7 +8,6 @@ import pl.bernatd.smart_home.exceptions.DataNotFoundException;
 import pl.bernatd.smart_home.repository.DataRepository;
 
 import java.util.List;
-import java.util.Optional;
 
 @Service
 @RequiredArgsConstructor

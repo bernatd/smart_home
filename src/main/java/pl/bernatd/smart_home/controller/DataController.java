@@ -5,13 +5,11 @@ import org.springframework.http.MediaType;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 import pl.bernatd.smart_home.domain.Data;
-import pl.bernatd.smart_home.domain.Sensor;
 import pl.bernatd.smart_home.dto.DataDto;
 import pl.bernatd.smart_home.exceptions.DataNotFoundException;
 import pl.bernatd.smart_home.exceptions.SensorNotFoundException;
 import pl.bernatd.smart_home.mapper.DataMapper;
 import pl.bernatd.smart_home.service.DbDataService;
-import pl.bernatd.smart_home.service.DbSensorService;
 
 import java.util.List;
 
